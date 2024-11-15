@@ -103,9 +103,9 @@ class _BoardWidgetState extends State<BoardWidget> {
           : GestureDetector(
               onTap: () {
                 widget.onTap(position);
-                print(position.row);
-                print(position.col);
+          
               },
+              behavior: HitTestBehavior.translucent,
               child: SizedBox(
                 width: width * 0.21,
                 height: width * 0.21,

@@ -34,6 +34,12 @@ class Player2Won extends MarbleGameState {
   }) : super(currentPlayer: Player.two);
 }
 
+class GameDrawn extends MarbleGameState {
+  GameDrawn({
+    required super.board,
+  }) : super(currentPlayer: Player.two);
+}
+
 class NewGame extends MarbleGameState {
   NewGame()
       : super(
