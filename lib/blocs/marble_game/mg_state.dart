@@ -1,4 +1,4 @@
-import '../../models/player.dart'; 
+import '../../models/player.dart';
 
 abstract class MarbleGameState {
   final List<List<Player?>> board;
@@ -12,26 +12,26 @@ abstract class MarbleGameState {
 
 class Player1Turn extends MarbleGameState {
   Player1Turn({
-    required List<List<Player?>> board,
-  }) : super(board: board, currentPlayer: Player.one);
+    required super.board,
+  }) : super(currentPlayer: Player.one);
 }
 
 class Player2Turn extends MarbleGameState {
   Player2Turn({
-    required List<List<Player?>> board,
-  }) : super(board: board, currentPlayer: Player.two);
+    required super.board,
+  }) : super(currentPlayer: Player.two);
 }
 
 class Player1Won extends MarbleGameState {
   Player1Won({
-    required List<List<Player?>> board,
-  }) : super(board: board, currentPlayer: Player.one);
+    required super.board,
+  }) : super(currentPlayer: Player.one);
 }
 
 class Player2Won extends MarbleGameState {
   Player2Won({
-    required List<List<Player?>> board,
-  }) : super(board: board, currentPlayer: Player.two);
+    required super.board,
+  }) : super(currentPlayer: Player.two);
 }
 
 class NewGame extends MarbleGameState {

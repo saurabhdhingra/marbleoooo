@@ -63,6 +63,7 @@ import 'mg_state.dart';
 
 class MarbleGameBloc extends Bloc<MarbleGameEvent, MarbleGameState> {
   MarbleGameBloc() : super(NewGame()) {
+    
     on<Player1Move>((event, emit) {
       List<List<Player?>> newBoard = _copyBoard(state.board);
 
