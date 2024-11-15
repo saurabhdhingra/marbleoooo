@@ -1,4 +1,3 @@
-// marble_game_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,8 +40,15 @@ class _MarbleGameScreenState extends State<MarbleGameScreen> {
         return SafeArea(
           child: Stack(
             children: [
-              Expanded(
-                child: Image.asset('assets/background.jpg', fit: BoxFit.cover),
+              Container(
+                height: height,
+                width: width,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/background.jpg'),
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
               ),
               Scaffold(
                 backgroundColor: Colors.transparent,
@@ -56,7 +62,7 @@ class _MarbleGameScreenState extends State<MarbleGameScreen> {
                         ))),
                 body: Column(
                   children: [
-                    SizedBox(height: height * 0.2),
+                    SizedBox(height: height * 0.08),
                     BoardWidget(
                       marbles: state.board,
                       onTap: (Position position) {
@@ -67,40 +73,46 @@ class _MarbleGameScreenState extends State<MarbleGameScreen> {
                             );
                       },
                     ),
-                    SizedBox(height: height * 0.2),
+                    SizedBox(height: height * 0.08),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                            height: height * 0.08,
+                            height: height * 0.04,
                             width: width * 0.35,
                             decoration: BoxDecoration(
-                              color: state.currentPlayer == Player.one
-                                  ? const Color.fromARGB(134, 255, 255, 255)
-                                  : const Color.fromARGB(76, 255, 255, 255),
-                              border: Border.all(
+                                color: state.currentPlayer == Player.one
+                                    ? const Color.fromARGB(134, 255, 255, 255)
+                                    : const Color.fromARGB(76, 255, 255, 255),
+                                border: Border.all(
                                   color: state.currentPlayer == Player.one
                                       ? playerOneColor
                                       : Colors.white,
-                                  width: 0.8),
-                            ),
+                                  width: 0.8,
+                                ),
+                                borderRadius:
+                                    BorderRadius.circular(height * 0.01)),
+                            alignment: Alignment.center,
                             child: Text("Player 1",
                                 style: GoogleFonts.roboto(
                                     fontSize: width * 0.04,
                                     fontWeight: FontWeight.w600,
                                     color: playerOneColor))),
                         Container(
-                            height: height * 0.08,
+                            height: height * 0.04,
                             width: width * 0.35,
                             decoration: BoxDecoration(
-                              color: state.currentPlayer == Player.one
-                                  ? const Color.fromARGB(134, 255, 255, 255)
-                                  : const Color.fromARGB(76, 255, 255, 255),
-                              border: Border.all(
-                                  color: state.currentPlayer == Player.two
-                                      ? playerTwoColor
-                                      : Colors.white,
-                                  width: 0.8),
-                            ),
+                                color: state.currentPlayer == Player.one
+                                    ? const Color.fromARGB(134, 255, 255, 255)
+                                    : const Color.fromARGB(76, 255, 255, 255),
+                                border: Border.all(
+                                    color: state.currentPlayer == Player.two
+                                        ? playerTwoColor
+                                        : Colors.white,
+                                    width: 0.8),
+                                borderRadius:
+                                    BorderRadius.circular(height * 0.01)),
+                            alignment: Alignment.center,
                             child: Text("Player 2",
                                 style: GoogleFonts.roboto(
                                     fontSize: width * 0.04,
@@ -110,19 +122,29 @@ class _MarbleGameScreenState extends State<MarbleGameScreen> {
                     ),
                     SizedBox(height: height * 0.08),
                     (state is Player1Won || state is Player2Won)
-                        ? Container(
-                            height: height * 0.08,
-                            width: width * 0.6,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(76, 255, 255, 255),
-                              border:
-                                  Border.all(color: Colors.white, width: 0.8),
-                            ),
-                            child: Text("New Game ???",
-                                style: GoogleFonts.roboto(
-                                    fontSize: width * 0.04,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black)))
+                        ? GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<MarbleGameBloc>()
+                                  .add(const NewGameInitiated());
+                            },
+                            child: Container(
+                                height: height * 0.06,
+                                width: width * 0.6,
+                                decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(76, 255, 255, 255),
+                                    border: Border.all(
+                                        color: Colors.white, width: 0.8),
+                                    borderRadius:
+                                        BorderRadius.circular(height * 0.02)),
+                                alignment: Alignment.center,
+                                child: Text("New Game ???",
+                                    style: GoogleFonts.roboto(
+                                        fontSize: width * 0.05,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black))),
+                          )
                         : const SizedBox(),
                   ],
                 ),

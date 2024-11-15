@@ -3,10 +3,9 @@ import 'package:marbleoooo/models/position.dart';
 import 'package:marbleoooo/utils/uiUtils.dart';
 import 'package:marbleoooo/widgets/marble.dart';
 import '../utils/constants.dart';
-import 'cell_widget.dart';
 import '../models/player.dart';
 
-class BoardWidget extends StatelessWidget {
+class BoardWidget extends StatefulWidget {
   final List<List<Player?>> marbles;
   final Function(Position) onTap;
 
@@ -16,6 +15,11 @@ class BoardWidget extends StatelessWidget {
     required this.onTap,
   });
 
+  @override
+  State<BoardWidget> createState() => _BoardWidgetState();
+}
+
+class _BoardWidgetState extends State<BoardWidget> {
   @override
   Widget build(BuildContext context) {
     var width = SizeConfig.getWidth(context);
@@ -46,7 +50,7 @@ class BoardWidget extends StatelessWidget {
         (i) {
           if (i % 2 == 0) {
             return _buildCell(
-                marbles[index][i], width, Position(index, (i / 2) as int));
+                widget.marbles[index][i ~/ 2], width, Position(index, i ~/ 2));
           } else {
             return buildColDivider(width, index, radiusOne);
           }
@@ -97,7 +101,7 @@ class BoardWidget extends StatelessWidget {
               ),
             )
           : GestureDetector(
-              onTap: onTap(position),
+              onTap: widget.onTap(position),
               child: SizedBox(
                 width: width * 0.21,
                 height: width * 0.21,
