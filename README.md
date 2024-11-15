@@ -36,8 +36,8 @@ lib/
 │   ├── constants.dart            # Constants for building UI
 │   ├── ui_utils.dart             # UI constants
 ├── widgets/
-│   ├── custom_board.dart         # Widget to draw the game board
-│   ├── custom_marble.dart        # Custom-painted marble widget
+│   ├── board_widget.dart         # Widget to draw the game board
+│   ├── marble.dart               # Custom-painted marble widget
 ├── main.dart                     # Entry point of the application
 ```
 
