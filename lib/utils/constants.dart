@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
-const int boardSize = 4;
-const Color playerOneColor = Colors.blue;
-const Color playerTwoColor = Colors.red;
+
+
+class SizeConfig {
+  static getHeight(context) {
+    return MediaQuery.of(context).size.height;
+  }
+
+  static getWidth(context) {
+    return MediaQuery.of(context).size.width;
+  }
+}
