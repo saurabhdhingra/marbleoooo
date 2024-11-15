@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marbleoooo/models/position.dart';
-import 'package:marbleoooo/utils/uiUtils.dart';
+import 'package:marbleoooo/utils/ui_utils.dart';
 import 'package:marbleoooo/widgets/marble.dart';
 import '../utils/constants.dart';
 import '../models/player.dart';
@@ -101,7 +101,11 @@ class _BoardWidgetState extends State<BoardWidget> {
               ),
             )
           : GestureDetector(
-              onTap: widget.onTap(position),
+              onTap: () {
+                widget.onTap(position);
+                print(position.row);
+                print(position.col);
+              },
               child: SizedBox(
                 width: width * 0.21,
                 height: width * 0.21,

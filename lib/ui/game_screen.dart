@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marbleoooo/blocs/marble_game/mg_event.dart';
-import 'package:marbleoooo/utils/uiUtils.dart';
+import 'package:marbleoooo/utils/ui_utils.dart';
 import 'package:marbleoooo/widgets/board_widget.dart';
 import '../blocs/marble_game/mg_bloc.dart';
 import '../blocs/marble_game/mg_state.dart';
